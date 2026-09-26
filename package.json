@@ -1,0 +1,32 @@
+{
+  "name": "@shiyld/shared",
+  "version": "1.0.1",
+  "description": "Shared TypeScript types, constants, and contract ABIs for the Shiyld privacy protocol.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiyld/shared.git"
+  },
+  "homepage": "https://github.com/shiyld/shared#readme",
+  "bugs": {
+    "url": "https://github.com/shiyld/shared/issues"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src/",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}
