@@ -64,6 +64,13 @@ export interface NoteWithMeta extends Note {
    * `poolAddress: undefined` at runtime; they're deliberately excluded from
    * balance/spend-selection rather than guessed into the current pool. */
   poolAddress: string;
+  /** The chain `poolAddress` lives on — also pure local bookkeeping. Needed because the
+   * "v1" pools have the SAME address on every chain (same deployer, same nonce order —
+   * see CLAUDE.md's Multi-Chain Deployment Plan), so a pool address alone can't tell a
+   * Base Sepolia note from an Arbitrum Sepolia one. Optional only because notes written
+   * before chains were scoped lack it; wallet-core treats a missing value as Base
+   * Sepolia (84532), the only chain any wallet build could use before 2026-09-27. */
+  chainId?: number;
 }
 
 export interface MerkleProof {

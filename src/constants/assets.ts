@@ -42,11 +42,12 @@ export interface AssetConfig {
 /**
  * Keyed by chainId, matching `ADDRESSES`'s existing per-chain shape (see
  * constants/addresses.ts) — extended to this shape 2026-09-06 for the wallet's
- * network-switcher work (see CLAUDE.md). Base Sepolia (84532) carries the real, live
- * "v1" pools; Arbitrum Sepolia (421614) and Ethereum Sepolia (11155111) are empty
- * on purpose — no `ShieldedPool` has been deployed on either yet (tracked separately in
- * CLAUDE.md's Multi-Chain Deployment Plan). An empty entry here is what lets the wallet
- * show an honest "no pools on this network yet" state instead of a broken one.
+ * network-switcher work (see CLAUDE.md). Base Sepolia (84532) is the canonical chain;
+ * Arbitrum Sepolia (421614) and Ethereum Sepolia (11155111) are sidechains carrying the
+ * same "v1" pools. Pool and token addresses are identical on all three chains, so a
+ * pool address alone never identifies a chain — always key by chainId. A chain with no
+ * deployment gets an empty entry, which lets the wallet show an honest "no pools on this
+ * network yet" state instead of a broken one.
  */
 export const ASSETS: Record<number, Record<string, AssetConfig>> = {
   // Base Sepolia "v1" deployment (Make-Us-Untrackable, 2026-09-26) — every pool from the
@@ -174,12 +175,256 @@ export const ASSETS: Record<number, Record<string, AssetConfig>> = {
       supportsFeeEnforcement: true,
     },
   },
-  // Arbitrum Sepolia — no ShieldedPool deployed yet. See CLAUDE.md's Multi-Chain
-  // Deployment Plan (Left item #2).
-  421614: {},
-  // Ethereum Sepolia — no ShieldedPool deployed yet. See CLAUDE.md's Multi-Chain
-  // Deployment Plan (Left item #2).
-  11155111: {},
+  // Arbitrum Sepolia (sidechain) "v1" deployment, 2026-09-27 — same pool/token addresses as Base
+  // Sepolia, different deployment blocks. Always look these up by chainId.
+  421614: {
+    ETH: {
+      symbol: "ETH",
+      name: "Ether",
+      address: ETH_ADDRESS,
+      decimals: 18,
+      poolAddress: "0xc41106C1051cFC48380C9936cD99f28DcE636080",
+      deploymentBlock: 313341305,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    USDT: {
+      symbol: "USDT",
+      name: "USDT Mocked",
+      address: "0x6F1F10b56ad4D634C1327299572E330f65C51B67",
+      decimals: 6,
+      poolAddress: "0xBD2F73d20d04f444c01972C1A70273C4F3734dcb",
+      deploymentBlock: 313341399,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    USDC: {
+      symbol: "USDC",
+      name: "USDC Mocked",
+      address: "0xF696990424EFe917b17eD6DE37C8e2b0D3dA5442",
+      decimals: 6,
+      poolAddress: "0x1A36d17D064593eeB45026c31d2ced201A3DdE08",
+      deploymentBlock: 313341476,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    DAI: {
+      symbol: "DAI",
+      name: "DAI Mocked",
+      address: "0x73C816A6660cd9640774BEb99dE027Bc07E4b3e8",
+      decimals: 18,
+      poolAddress: "0x4d9E98815D6De8faDdB6Df3bC445bf43f86F14cb",
+      deploymentBlock: 313341552,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    BTC: {
+      symbol: "BTC",
+      name: "WBTC Mocked",
+      address: "0x002336Cf16c4d2FcB0CB68133A0573501B6b0A34",
+      decimals: 8,
+      poolAddress: "0xA14F5831481a05dDcCe63F7c0f449772C727CB96",
+      deploymentBlock: 313341629,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    XAU: {
+      symbol: "XAU",
+      name: "XAU Mocked",
+      address: "0xCe6DCC40E7eD73e2Cdf4cb25A427F87c7733A807",
+      decimals: 18,
+      poolAddress: "0x8Cfba9227f16860100C2Dc7C1CEcc9C3944bfaAc",
+      deploymentBlock: 313342021,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    XAG: {
+      symbol: "XAG",
+      name: "XAG Mocked",
+      address: "0xf0C8bEB8b3c4046F197cD97470172C0F0cb0fB4B",
+      decimals: 18,
+      poolAddress: "0xc5b29e367416dd8fA7052123959Bb4857afC1183",
+      deploymentBlock: 313342097,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    AAPL: {
+      symbol: "AAPL",
+      name: "AAPL Mocked",
+      address: "0x6132d2f94dc9fc645191FB51b6f1a1a79dF422d9",
+      decimals: 18,
+      poolAddress: "0x37f0d866aCFd62149D8F8713B95b87b7b940069d",
+      deploymentBlock: 313342176,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    MSFT: {
+      symbol: "MSFT",
+      name: "MSFT Mocked",
+      address: "0xf24E35131d7B78d5817BC3418f56Aec70556FC2A",
+      decimals: 18,
+      poolAddress: "0x2763E4305Ce2D06A4f799C19E189C3774638d2a2",
+      deploymentBlock: 313342254,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    AMZN: {
+      symbol: "AMZN",
+      name: "AMZN Mocked",
+      address: "0x1EC9e7d95dc809221c084A428B4aAd7AaaC5364a",
+      decimals: 18,
+      poolAddress: "0x3F8740a32A499782e5Bd94D9e5F0C0C4efcC6954",
+      deploymentBlock: 313342329,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    NVDA: {
+      symbol: "NVDA",
+      name: "NVDA Mocked",
+      address: "0x6d94C2b7b14b1d98877C6474a4A8190198119dd0",
+      decimals: 18,
+      poolAddress: "0xA39350A5B6604Ffe4D68896C55f57516d9b2A1ef",
+      deploymentBlock: 313342418,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+  },
+  // Ethereum Sepolia (sidechain) "v1" deployment, 2026-09-27 — same pool/token addresses as Base
+  // Sepolia, different deployment blocks. Always look these up by chainId.
+  11155111: {
+    ETH: {
+      symbol: "ETH",
+      name: "Ether",
+      address: ETH_ADDRESS,
+      decimals: 18,
+      poolAddress: "0xc41106C1051cFC48380C9936cD99f28DcE636080",
+      deploymentBlock: 11795089,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    USDT: {
+      symbol: "USDT",
+      name: "USDT Mocked",
+      address: "0x6F1F10b56ad4D634C1327299572E330f65C51B67",
+      decimals: 6,
+      poolAddress: "0xBD2F73d20d04f444c01972C1A70273C4F3734dcb",
+      deploymentBlock: 11795138,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    USDC: {
+      symbol: "USDC",
+      name: "USDC Mocked",
+      address: "0xF696990424EFe917b17eD6DE37C8e2b0D3dA5442",
+      decimals: 6,
+      poolAddress: "0x1A36d17D064593eeB45026c31d2ced201A3DdE08",
+      deploymentBlock: 11795141,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    DAI: {
+      symbol: "DAI",
+      name: "DAI Mocked",
+      address: "0x73C816A6660cd9640774BEb99dE027Bc07E4b3e8",
+      decimals: 18,
+      poolAddress: "0x4d9E98815D6De8faDdB6Df3bC445bf43f86F14cb",
+      deploymentBlock: 11795145,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    BTC: {
+      symbol: "BTC",
+      name: "WBTC Mocked",
+      address: "0x002336Cf16c4d2FcB0CB68133A0573501B6b0A34",
+      decimals: 8,
+      poolAddress: "0xA14F5831481a05dDcCe63F7c0f449772C727CB96",
+      deploymentBlock: 11795150,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    XAU: {
+      symbol: "XAU",
+      name: "XAU Mocked",
+      address: "0xCe6DCC40E7eD73e2Cdf4cb25A427F87c7733A807",
+      decimals: 18,
+      poolAddress: "0x8Cfba9227f16860100C2Dc7C1CEcc9C3944bfaAc",
+      deploymentBlock: 11795153,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    XAG: {
+      symbol: "XAG",
+      name: "XAG Mocked",
+      address: "0xf0C8bEB8b3c4046F197cD97470172C0F0cb0fB4B",
+      decimals: 18,
+      poolAddress: "0xc5b29e367416dd8fA7052123959Bb4857afC1183",
+      deploymentBlock: 11795157,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    AAPL: {
+      symbol: "AAPL",
+      name: "AAPL Mocked",
+      address: "0x6132d2f94dc9fc645191FB51b6f1a1a79dF422d9",
+      decimals: 18,
+      poolAddress: "0x37f0d866aCFd62149D8F8713B95b87b7b940069d",
+      deploymentBlock: 11795161,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    MSFT: {
+      symbol: "MSFT",
+      name: "MSFT Mocked",
+      address: "0xf24E35131d7B78d5817BC3418f56Aec70556FC2A",
+      decimals: 18,
+      poolAddress: "0x2763E4305Ce2D06A4f799C19E189C3774638d2a2",
+      deploymentBlock: 11795165,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    AMZN: {
+      symbol: "AMZN",
+      name: "AMZN Mocked",
+      address: "0x1EC9e7d95dc809221c084A428B4aAd7AaaC5364a",
+      decimals: 18,
+      poolAddress: "0x3F8740a32A499782e5Bd94D9e5F0C0C4efcC6954",
+      deploymentBlock: 11795168,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+    NVDA: {
+      symbol: "NVDA",
+      name: "NVDA Mocked",
+      address: "0x6d94C2b7b14b1d98877C6474a4A8190198119dd0",
+      decimals: 18,
+      poolAddress: "0xA39350A5B6604Ffe4D68896C55f57516d9b2A1ef",
+      deploymentBlock: 11795171,
+      supports2Input: true,
+      supportsDepositCiphertext: true,
+      supportsFeeEnforcement: true,
+    },
+  },
 };
 
 /**
@@ -188,8 +433,9 @@ export const ASSETS: Record<number, Record<string, AssetConfig>> = {
  * distribution + future staking-mechanics testing, not shielded custody). Genesis-mint
  * mirrors the real mainnet tokenomics' one defining property (fixed supply, minted once
  * — see `TestSYD.sol`); explicitly non-transferable, superseded rather than migrated
- * once the real $SYD launches. Keyed by chainId for consistency with `ASSETS`/`ADDRESSES`
- * even though only 84532 has an entry today.
+ * once the real $SYD launches. Keyed by chainId for consistency with `ASSETS`/`ADDRESSES`;
+ * $SYD lives on Base Sepolia only — sidechains get it later via cross-chain bridging,
+ * never a second mint.
  */
 export const TESTNET_SYD: Record<number, { address: string; decimals: number } | undefined> = {
   84532: { address: "0xca1f9cc28eC3Ad7b60513BbF0e771240850Ad354", decimals: 18 },
