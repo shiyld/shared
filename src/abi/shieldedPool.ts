@@ -18,6 +18,13 @@ export const SHIELDED_POOL_ABI = [
   "function withdraw2((uint256[2] pA, uint256[2][2] pB, uint256[2] pC, bytes32 nullifier1, bytes32 nullifier2, address payable recipient, uint256 amount, bytes32 merkleRoot, uint256 fee, bytes32 changeCommitment, bytes changeEnvelope) p)",
   "function root() view returns (bytes32)",
   "function isKnownRoot(bytes32 root) view returns (bool)",
+  // Tree rollover, all-historical roots and duplicate-commitment rejection (pre-mainnet
+  // review R1–R3, MerkleTree.sol). Leaf indices are global; leaf i is in tree i >> 20.
+  "function nextLeafIndex() view returns (uint64)",
+  "function currentTreeNumber() view returns (uint256)",
+  "function treeNumberOf(uint256 leafIndex) view returns (uint256)",
+  "function isHistoricalRoot(bytes32 root) view returns (bool)",
+  "function commitmentExists(bytes32 commitment) view returns (bool)",
   "function asset() view returns (address)",
   "function nullifiers(bytes32) view returns (bool)",
   // Fee Enforcement (see CLAUDE.md's "Fee Enforcement Strategy" and "Net-Receiver
@@ -37,7 +44,7 @@ export const SHIELDED_POOL_ABI = [
   // one exception: Cross-Wallet Send's ciphertext-correctness constraint means it's
   // parsed and checked against the proof — same ABI signature either way, only the
   // contract's internal handling changed.
-  "event Deposit(bytes32 indexed commitment, uint32 leafIndex, uint256 amount, bytes envelope)",
+  "event Deposit(bytes32 indexed commitment, uint64 leafIndex, uint256 amount, bytes envelope)",
   "event Transfer(bytes32 indexed nullifier, bytes32 indexed outputCommitment, bytes32 indexed changeCommitment, bytes outputEnvelope, bytes changeEnvelope)",
   "event Withdrawal(bytes32 indexed nullifier, address indexed recipient, uint256 amount, bytes32 indexed changeCommitment, bytes changeEnvelope)",
   // nullifier2 rides as plain (non-indexed) data on both — only 3 indexed topics are
@@ -50,5 +57,5 @@ export const SHIELDED_POOL_ABI = [
   // insertion order from Deposit/Transfer/Withdrawal alone (transfer() inserts 2 leaves
   // per call, withdraw() inserts 1 alongside a public payout — LeafInserted disambiguates
   // both directly instead of relying on contract-internal insert-order knowledge).
-  "event LeafInserted(uint32 indexed leafIndex, bytes32 leaf, bytes32 root)",
+  "event LeafInserted(uint64 indexed leafIndex, bytes32 leaf, bytes32 root)",
 ] as const;

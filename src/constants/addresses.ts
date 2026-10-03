@@ -39,52 +39,52 @@ export const ADDRESSES: Record<number, ChainAddresses> = {
     deploymentBlock: 0,
   },
   // Arbitrum Sepolia (sidechain) — the "v1" deployment, same owner as Base Sepolia, pools
-  // redeployed 2026-09-29 with the circuit soundness fix. Tokens, EpochManager and
+  // redeployed 2026-10-03 with the pre-mainnet hardening fixes. Tokens, EpochManager and
   // ParameterRegistry match Base Sepolia's; pools, verifiers and the factory don't. No $SYD.
   421614: {
-    shieldedPool: "0xBCF06223B275309AB5669E1554F53497bc54BF84",
-    poolFactory: "0x9C369276876f2c8ecC8B1Ca1Fd579A350061e890",
-    merkleTree: "0xBCF06223B275309AB5669E1554F53497bc54BF84",
-    depositVerifier: "0x935bAe22Bc98D4ebCeFe33A4bD259AF76c869Db8",
-    transferVerifier: "0xbd22D05B6020D0bDa1E8b2E8E49F5126f4bb1d45",
-    withdrawVerifier: "0x03E3a1553be0e97Af40aa870331c2B6e2A52Cb14",
-    transfer2Verifier: "0xD0d6e7dd4033d1eA12De4bec77E6396b6C9aad6C",
-    withdraw2Verifier: "0xCE650989aaf6bA3B374f657485C024c92aFD1e83",
+    shieldedPool: "0xE87C8A79a7088675D9D27BF488d650C61835F368",
+    poolFactory: "0x6D57D118a7356B4B6c6e0d3D4e40cfF89187648a",
+    merkleTree: "0xE87C8A79a7088675D9D27BF488d650C61835F368",
+    depositVerifier: "0x4f0dC3d0AA049842f408Ea0fBd1eF00F2d6b6D10",
+    transferVerifier: "0x3afE59973a4A5c36a6546FFA83f2570b43A72dcE",
+    withdrawVerifier: "0x41B91aAe4903F3A249346253cf30B10cb44cF9b2",
+    transfer2Verifier: "0x0b93d21861A6417a178db2fC70CCf3234319209A",
+    withdraw2Verifier: "0x2b2ad3F79E576d6c430A87A266D36348ff419030",
     epochManager: "0xB28FfcD6f1346ea9F80290c039cb87F0A121240E",
     parameterRegistry: "0xB838CFCE14F3A5681c4AC808A3B67bB7F8f1A95b",
-    deploymentBlock: 314017581,
+    deploymentBlock: 315152078,
   },
   // Ethereum Sepolia (sidechain) — the "v1" deployment, same owner as Base Sepolia, pools
-  // redeployed 2026-09-29 with the circuit soundness fix. Tokens, EpochManager and
+  // redeployed 2026-10-03 with the pre-mainnet hardening fixes. Tokens, EpochManager and
   // ParameterRegistry match Base Sepolia's; pools, verifiers and the factory don't. No $SYD.
   11155111: {
-    shieldedPool: "0x28eD5A1b4b91baBaF37F1cA285C25F8d92a43c6A",
-    poolFactory: "0xa3b81cb585f224d609E05ACbf98D2f6Df507Feed",
-    merkleTree: "0x28eD5A1b4b91baBaF37F1cA285C25F8d92a43c6A",
-    depositVerifier: "0xa250A2fadA94ddb5E77EE107acD133Ae7ec0FfD1",
-    transferVerifier: "0x935bAe22Bc98D4ebCeFe33A4bD259AF76c869Db8",
-    withdrawVerifier: "0xbd22D05B6020D0bDa1E8b2E8E49F5126f4bb1d45",
-    transfer2Verifier: "0x03E3a1553be0e97Af40aa870331c2B6e2A52Cb14",
-    withdraw2Verifier: "0xD0d6e7dd4033d1eA12De4bec77E6396b6C9aad6C",
+    shieldedPool: "0xBBc38a5B99184F66638f304f380089e1EDf2e31B",
+    poolFactory: "0x2b2ad3F79E576d6c430A87A266D36348ff419030",
+    merkleTree: "0xBBc38a5B99184F66638f304f380089e1EDf2e31B",
+    depositVerifier: "0xCD9891022D59aEE79819C8beB15893BE77dE1407",
+    transferVerifier: "0x893B2915550d569907b272175bE18E9c48750b23",
+    withdrawVerifier: "0x4f0dC3d0AA049842f408Ea0fBd1eF00F2d6b6D10",
+    transfer2Verifier: "0x3afE59973a4A5c36a6546FFA83f2570b43A72dcE",
+    withdraw2Verifier: "0x41B91aAe4903F3A249346253cf30B10cb44cF9b2",
     epochManager: "0xB28FfcD6f1346ea9F80290c039cb87F0A121240E",
     parameterRegistry: "0xB838CFCE14F3A5681c4AC808A3B67bB7F8f1A95b",
-    deploymentBlock: 11809035,
+    deploymentBlock: 11832497,
   },
-  // Base Sepolia (testnet) — the "v1" deployment, pools redeployed 2026-09-29 with the
-  // circuit soundness fix: ETH pool shown here, every other
+  // Base Sepolia (testnet) — the "v1" deployment, pools redeployed 2026-10-03 with the
+  // pre-mainnet hardening fixes: ETH pool shown here, every other
   // asset's pool in constants/assets.ts. All pools share this factory, verifier set,
   // EpochManager and ParameterRegistry.
   84532: {
-    shieldedPool: "0x3FA6242b74297dD07BdC7dD662F132c2A27635A9",
-    poolFactory: "0x7F1Ab0a9cEeD5280e53D8082718928D35C25f2FE",
-    merkleTree: "0x3FA6242b74297dD07BdC7dD662F132c2A27635A9",
-    depositVerifier: "0xBB409c02D2e5BFb936DFd19313AC6b6390FD2596",
-    transferVerifier: "0x01A804bc7Dd351FE0BcFd8e0Ab27b44741F88708",
-    withdrawVerifier: "0x00B2E5507c6a8B23b0fD2d329eA0e5F530c62add",
-    transfer2Verifier: "0x169cD1AE0987DF999FF9E0Ab9876200E95453173",
-    withdraw2Verifier: "0x3fb6a424d4945083372592C2C818eaC9dA328D4B",
+    shieldedPool: "0x21565437890Ea3932077739ad88630d7008504b1",
+    poolFactory: "0xDd1b25114b63b43b65d8eEf2356395FabD2FaaB4",
+    merkleTree: "0x21565437890Ea3932077739ad88630d7008504b1",
+    depositVerifier: "0x8eCC87BC1dD25e0676285fC41BAa781df4E5Aabd",
+    transferVerifier: "0xc9Fc30C4022BB924C6B22884ff13540496972479",
+    withdrawVerifier: "0x0761eBfD43cDBA1A8dD7AdEDF50D1367423a8AB9",
+    transfer2Verifier: "0x82Ac1abCe8b9c838AD98Cf4b2b107A5786c69C38",
+    withdraw2Verifier: "0x2164eE940d2972BfeFbBcda162A78Dac91047Bf1",
     epochManager: "0xB28FfcD6f1346ea9F80290c039cb87F0A121240E",
     parameterRegistry: "0xB838CFCE14F3A5681c4AC808A3B67bB7F8f1A95b",
-    deploymentBlock: 47466654,
+    deploymentBlock: 47608623,
   },
 };
