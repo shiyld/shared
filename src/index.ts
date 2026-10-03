@@ -16,4 +16,5 @@ export { NETWORKS, networkBySlug, networkByChainId } from "./constants/networks"
 export type { NetworkConfig } from "./constants/networks";
 export { SHIELDED_POOL_ABI } from "./abi/shieldedPool";
 export { PARAMETER_REGISTRY_ABI } from "./abi/parameterRegistry";
+export { STAKING_ABI } from "./abi/staking";
 export { EPOCH_MANAGER_ABI } from "./abi/epochManager";

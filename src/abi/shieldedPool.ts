@@ -37,6 +37,14 @@ export const SHIELDED_POOL_ABI = [
   "function freelyWithdrawn(address) view returns (uint256)",
   "function netReceiverWithdrawnThisEpoch(address) view returns (uint256)",
   "function lastEpochSeen(address) view returns (uint256)",
+  // Fee perks + Treasury fee fallback (STAKING-AND-TREASURY-PLAN.md §4–§5) — only on pools
+  // deployed after the revised staking plan; older pools revert on these calls.
+  "function staking() view returns (address)",
+  "function discountUsedThisEpoch(address) view returns (uint256)",
+  "function unpaidFees() view returns (uint256)",
+  "function flushFees()",
+  "event FeeDeferred(uint256 amount)",
+  "event FeesFlushed(uint256 amount)",
   // envelope/outputEnvelope/changeEnvelope: Stealth Notes ciphertext (see CLAUDE.md's
   // "Note Discovery" section) — every wallet trial-decrypts these to rediscover its own
   // notes. envelope (deposit) and changeEnvelope (transfer/withdraw) stay fully opaque
