@@ -7,6 +7,8 @@ export const STAKING_ABI = [
   "function stake(uint256 amount, uint256 lockEpochs) returns (uint256 id)",
   "function stakeLp(uint256 amount, uint256 lockEpochs) returns (uint256 id)",
   "function withdraw(uint256 id)",
+  "function withdrawPart(uint256 id, uint256 amount)",
+  "function relock(uint256 id, uint256 lockEpochs)",
   "function claim()",
   "function claimAndRelock(uint256 lockEpochs) returns (uint256 id)",
   "function refreshPerks() returns (uint256 validUntil)",
